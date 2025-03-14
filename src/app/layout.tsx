@@ -1,3 +1,4 @@
+import LogoutButton from '@/components/ui/logout-button'
 import './globals.css'
 
 import type { Metadata } from 'next'
@@ -19,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="bg-[#192048] text-sky-200">Tably</nav>
+        <nav className="bg-[#192048] text-sky-200">
+          Tably <LogoutButton />
+        </nav>
         {children}
       </body>
     </html>
