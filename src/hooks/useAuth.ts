@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 
 export function useAuth() {
   const [loading, setLoading] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [token, setToken] = useState<string | null>(null)
   const router = useRouter()
 
@@ -13,8 +14,10 @@ export function useAuth() {
       if (res.ok) {
         const data = await res.json()
         setToken(data.token)
+        setIsLoggedIn(true)
       } else {
         router.push('/login') // Redirect to login if not authenticated
+        setIsLoggedIn(false)
       }
       setLoading(false)
     }
@@ -22,5 +25,5 @@ export function useAuth() {
     fetchToken()
   }, [router])
 
-  return { loading, token }
+  return { loading, token, isLoggedIn, setIsLoggedIn }
 }

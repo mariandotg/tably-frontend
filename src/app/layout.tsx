@@ -1,9 +1,10 @@
-import LogoutButton from '@/components/ui/logout-button'
 import './globals.css'
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import React from 'react'
+import Navbar from '@/components/ui/navbar'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,10 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="bg-[#192048] text-sky-200">
-          Tably <LogoutButton />
-        </nav>
-        {children}
+        <AuthProvider>
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   )
